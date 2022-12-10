@@ -29,7 +29,14 @@ if(isset($_POST['login'])){
 
 		$stmt = mysqli_stmt_init($conn);
 
-		(!mysqli_stmt_prepare($stmt,$sql));
+		if(!mysqli_stmt_prepare($stmt,$sql)){
+
+			echo"<script>alert('Failed Connectig to Server!');
+					window.location='index.php'</script>";
+			exit();
+		}
+
+		else{
 
 			mysqli_stmt_bind_param($stmt,"ss",$adminID,$password);
 			mysqli_stmt_execute($stmt);
